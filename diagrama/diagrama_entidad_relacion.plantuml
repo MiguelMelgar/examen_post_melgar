@@ -1,0 +1,52 @@
+@startuml
+
+entity Animal {
+    + nombre: string
+    + color: Especie
+}
+
+entity Especie {
+    + nombre: string
+    + caracteristica: String
+}
+
+entity Recinto {
+    + nombre: string
+    + capacidad: Int
+}
+
+entity Cuidador {
+    + nombre: string
+    + apellido: String
+    + especialidad: string
+}
+
+entity Actividad {
+    + nombre: string
+    + dia: string
+    + horario: string
+}
+entity Cuidador_Especie{
+    - id_cuidador: string
+    - id_especie: string
+}
+entity Animal_Recinto{
+    - id_Animal: string
+    - id_Recinto: string
+}
+entity Animal_Actividad{
+    - id_Animal: string
+    - id_Actividad: string
+}
+
+Animal "n"--"1" Especie
+Animal "1"--"n" Animal_Recinto
+Animal_Recinto "n"--"1" Recinto
+Cuidador "1" -- "n" Animal
+Cuidador "1" -- "n" Cuidador_Especie
+Cuidador_Especie "n" -- "1" Especie
+Especie "1" -- "n" Recinto
+Actividad "1" -- "n" Animal_Actividad
+Animal_Actividad "n" -- "1" Animal
+
+@enduml
